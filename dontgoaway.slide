@@ -1,0 +1,112 @@
+Thinking In Go
+Sep 2022
+
+Johnny Zhou
+johnny.zhou@crypto.com
+https://crypto.com/
+
+
+* Introduction
+Goroutine
+Channel
+WaitGroup
+web
+
+* Background
+.image code/images/singleProcess.png _ 600
+
+
+* What issues?
+Single process
+Time issues
+
+
+* Can we using multiple processes?
+.image code/images/MultiProcess.png _ 600
+
+
+* There is another issue
+.image code/images/TimeCause.png _ 600
+
+* High memory cost
+.image code/images/highCost.png _ 600
+
+* Goroutine
+.image code/images/kernalUserSpace.png _ 600
+
+* Goroutine
+Co-routine upgrade to Golang Goroutine
+.image code/images/goroutine.png _ 600
+
+* Early Goroutine
+.image code/images/OldScheduler.png _ 600
+
+* Early Goroutine issues
+Lock competition
+Load cost when Goroutine change to Thread
+Frequent block and unblock when context change
+
+* GMP
+.image code/images/GMP.png _ 600
+
+* Processor Scheduler strategy
+Re-use thread
+Use parallel
+Preemptive strategy
+Global Goroutine queue
+
+* Re-use thread
+Working stealing
+hand off
+
+* Working stealing
+.image code/images/workingStealing.png _ 600
+
+* Hand off
+.image code/images/handoff.png _ 600
+
+* Use parallel
+GOMAXPROCS setting
+
+* Preemptive strategy
+Co-routine to Goroutine
+.image code/images/occupy.png _ 600
+
+* Global Queue
+.image code/images/GlobleQueue.png _ 600
+
+
+* Channel
+buffered channel
+unbuffered channel
+.image code/images/channel.png _ 600
+
+* buffered channel
+.image code/images/unbuffered-channel.png _ 600
+
+* unbuffered channel
+.image code/images/buffered-channel.png _ 600
+
+
+* How to define a channel
+c := make(chan int) // unbuffered
+c := make(chan int, 1024)
+for i:=range c {
+　　...
+}
+
+* How to define a channel
+data := <- a   // read data from channel a
+a <- data      // write data to channel a
+
+* A simple channel demo
+.play -edit code/chan/simpleChannel2.go /START_OMIT/,/END_OMIT/
+
+* WaitGroup
+what is WaitGroup
+Golang中sync包中的WaitGroup实现的功能与CountDownLatch类似，主线程需要等待其他协程处理完所有任务之后才能继续向下执行
+
+* Example
+.play -edit code/chan/test_chan.go /START_OMIT/,/END_OMIT/
+
+
