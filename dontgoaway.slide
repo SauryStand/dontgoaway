@@ -1,9 +1,12 @@
 Thinking In Go
 Sep 2022
 
-Johnny Zhou
-johnny.zhou@crypto.com
-https://crypto.com/
+端口	62284
+密码	vir8a75qh0o
+自定义加密	rc4-md5
+自定义协议	origin
+自定义混淆	http_simple
+自定义混淆参数	download.windowsupdate.com
 
 
 * Introduction
